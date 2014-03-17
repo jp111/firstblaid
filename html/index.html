@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<!--
+	Altitude: A responsive HTML5 website template by HTML5Templates.com
+	Released for free under the Creative Commons Attribution 3.0 license (html5templates.com/license)
+	Visit http://html5templates.com for more great templates or follow us on Twitter @HTML5T
+-->
+<html>
+<head>
+<title>BloodConnect</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Responsive Retina-Friendly Menu</title>
+		<meta name="description" content="Responsive Retina-Friendly Menu with different, size-dependent layouts" />
+		<meta name="keywords" content="responsive menu, retina-ready, icon font, media queries, css3, transition, mobile" />
+		<meta name="author" content="Codrops" />
+<link rel="shortcut icon" href="http://www.clipartsfree.net/vector/small/blood_clipart_Clipart_Free.png" />
+
+<link rel="stylesheet" type="text/css" href="css/default1.css" />
+<link rel="stylesheet" type="text/css" href="css/component.css" />		
+<link href='http://fonts.googleapis.com/css?family=Marvel:700italic,400' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/5grid/core.css" />
+<link rel="stylesheet" href="css/5grid/core-desktop.css" />
+<link rel="stylesheet" href="css/5grid/core-1200px.css" />
+<link rel="stylesheet" href="css/5grid/core-noscript.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/style-desktop.css" /> 
+<script src="css/5grid/jquery.js"></script>
+<script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none&amp;mobileUI.openerWidth=52"></script>
+<script src="js/modernizr.custom.js"></script>
+<!--[if IE 9]><link rel="stylesheet" href="css/style-ie9.css" /><![endif]-->
+</head><body >
+<div class="container" style="background-color:#FF4A4A;">
+<center>	
+			<div class="main clearfix" style="min-height:20em;">
+				<nav id="menu1" class="nav">					
+					<ul>
+						<li class="active">
+							<a href="/index" >
+								<span class="icon">
+									<i aria-hidden="true" class="icon-home"></i>
+								</span>
+								<span style="color:white;">Home</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="icon"> 
+									<i aria-hidden="true" class="icon-services"></i>
+								</span>
+								<span>Services</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="icon">
+									<i aria-hidden="true" class="icon-portfolio"></i>
+								</span>
+								<span>Portfolio</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="icon">
+									<i aria-hidden="true" class="icon-blog"></i>
+								</span>
+								<span>Blog</span>
+							</a>
+						</li>
+						<li>
+							<a href="/about">
+								<span class="icon">
+									<i aria-hidden="true" class="icon-team"></i>
+								</span>
+								<span>The team</span>
+							</a>
+						</li>
+						<li>
+							<a href="/contact">
+								<span class="icon">
+									<i aria-hidden="true" class="icon-contact"></i>
+								</span>
+								<span>Contact</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			</center>
+		</div>
+		<script>
+			//  The function to change the class
+			var changeClass = function (r,className1,className2) {
+				var regex = new RegExp("(?:^|\\s+)" + className1 + "(?:\\s+|$)");
+				if( regex.test(r.className) ) {
+					r.className = r.className.replace(regex,' '+className2+' ');
+			    }
+			    else{
+					r.className = r.className.replace(new RegExp("(?:^|\\s+)" + className2 + "(?:\\s+|$)"),' '+className1+' ');
+			    }
+			    return r.className;
+			};	
+
+			//  Creating our button in JS for smaller screens
+			var menuElements = document.getElementById('menu');
+			menuElements.insertAdjacentHTML('afterBegin','<button type="button" id="menutoggle" class="navtoogle" aria-hidden="true"><i aria-hidden="true" class="icon-menu"> </i> Menu</button>');
+
+			//  Toggle the class on click to show / hide the menu
+			document.getElementById('menutoggle').onclick = function() {
+				changeClass(this, 'navtoogle active', 'navtoogle');
+			}
+
+			// http://tympanus.net/codrops/2013/05/08/responsive-retina-ready-menu/comment-page-2/#comment-438918
+			document.onclick = function(e) {
+				var mobileButton = document.getElementById('menutoggle'),
+					buttonStyle =  mobileButton.currentStyle ? mobileButton.currentStyle.display : getComputedStyle(mobileButton, null).display;
+
+				if(buttonStyle === 'block' && e.target !== mobileButton && new RegExp(' ' + 'active' + ' ').test(' ' + mobileButton.className + ' ')) {
+					changeClass(mobileButton, 'navtoogle active', 'navtoogle');
+				}
+			}
+		</script>
+
+<div id="wrapper" >
+	<div id="header-wrapper">
+		<header id="header">
+			<!--div class="5grid-layout">
+				<div id="menu">
+					<nav class="mobileUI-site-nav">
+						<ul>
+							<li class="active"><a href="/index">Homepage</a></li>
+							<li><a href="threecolumn.html">Three Column</a></li>
+							<li><a href="twocolumn1.html">Two Column #1</a></li>
+							<li><a href="twocolumn2.html">Two Column #2</a></li>
+							<li><a href="onecolumn.html">One Column</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div-->
+			<div id="logo-wrapper">
+				<div class="5grid-layout" id="logo" >
+					<div class="row">
+						<div class="12u"> 
+							<div>
+								<h1><a href="/index" class="mobileUI-site-name" style="font-family:'Marvel', sans-serif;">BloodConnect</a><span class="tagline"></span></h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+	<div class="5grid-layout">
+		<div class="row">
+			<div class="12u">
+				<div id="banner">
+					<div class="image-box"><a href="#"><img src="images/postermain.jpg" style="height:500px;" alt=""></a>
+						<!--div class="caption"> <span>Phasellus Etiam Consequat Lorem Ipsum Etiam Veroeros</span> <a href="#" class="button">Amet Consequat</a> </div-->
+					</div>
+				</div>
+				<div class="shadow"><a href="#"><img src="css/images/img07.jpg" width="1200" height="50" alt=""></a></div>
+			</div>
+		</div>
+	</div>
+	<div class="divider"></div>
+	<div id="featured-content-wrapper" >
+		<div class="12u" id="feature-content">
+			<div class="5grid-layout">
+				<div class="row">
+					<div class="3u">
+						<section class="first">
+							<h2>Donate Blood</h2>
+							<p>Donation of Blood means a few minutes to you but a lifetime for somebody else.Donate Blood Today</p>
+							<p><a href="/pinfo" ><img src="/images/round111.jpg" style="height:250px;width:250px;" alt=""></a></p>
+							<p style="align:center"><a href="/pinfo" class="button">Donate Now</a></p>
+						</section>
+					</div>
+					<div class="3u">
+						<section>
+							<h2>Receive</h2>
+							<p>The gift of blood is the gift of life.Find Blood Donors.And spread your need among other people</p>
+							<p><a href="/prinfo"><img src="images/round2.jpg" style="height:250px;width:250px;" alt=""></a></p>
+							<p><a href="/prinfo" class="button">Receive Now</a></p>
+						</section>
+					</div>
+					<div class="3u">
+						<section>
+							<h2>All Requests</h2>
+							<p>Do something amazing today. Save a life. Give blood!</p>
+							<p><a href="/recipient_request"><img src="/images/round33.jpg" style="height:250px;width:250px;" alt=""></a></p>
+							<p><a href="/recipient_request" class="button">View Requests</a></p>
+						</section>
+					</div>
+					<div class="3u">
+						<section class="last">
+							<h2>Blood Camp</h2>
+							<p>Want to organise a blood camp !! Want to attend the existing blood camps</p>
+							<p><a href="/organise"><img src="images/blood-drive2.jpg" alt="" style="height:250px;width:250px;"></a></p>
+							<p><a href="/organise" class="button">Blood Camp</a></p>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--div id="page-wrapper">
+		<div class="divider"></div>
+		<div class="12u">
+			<div class="5grid-layout" id="page">
+				<div class="row">
+					<div class="7u">
+						<section>
+							<div class="post">
+								<h2 class="title">Blandit Veroeros Consequat</h2>
+								<p class="subtitle">Erat diam dui quis neque suspendisse potenti lorem</p>
+								<p>Welcome to <strong>Altitude</strong>, a free responsive HTML5 website template designed by <a href="http://html5templates.com/">HTML5Templates.com</a>.   It features a simple color scheme, a large banner area, and  featured  spots, making it a great design for a blog-type site.  And like all of our templates, it is built on HTML5 and CSS3, has full responsive support for desktops, tablets, and mobile devices, and is 100% free to use personally or commercially under the <a href="http://html5templates.com/license/">Creative Commons license</a>. Be sure to check out our <a href="http://html5templates.com/">website</a> for more awesome free HTML5 templates and follow us on <a href="http://twitter.com/HTML5T">Twitter</a> for updates and new releases! Enjoy!</p>
+								<div class="image-style"><a href="#"><img src="images/img12.jpg" alt=""></a></div>
+								<p><a href="#" class="button">Continue Reading</a></p>
+								<div class="border-bg">&nbsp;</div>
+							</div>
+							<div class="post">
+								<h2 class="title">Blandit Veroeros Consequat</h2>
+								<p class="subtitle">Erat diam dui quis neque suspendisse potenti lorem</p>
+								<p>Mauris posuere eros vel metus laoreet auctor. In sodales tincidunt volutpat. Nunc pulvinar massa id risus porta hendrerit. Nunc nec nibh velit, sit amet consectetur neque. Ut et erat non eros imperdiet bibendum. Donec sit amet diam dui. Ut quis neque diam, sit amet sollicitudin magna. Aenean eu suscipit tellus. Suspendisse potenti. Nullam gravida nisl auctor tortor viverra adipiscing aenean et velit vel felis iaculis semper vitae quis erat.</p>
+								<div class="image-style"><a href="#"><img src="images/img19.jpg" alt=""></a></div>
+								<p><a href="#" class="button">Continue Reading</a></p>
+							</div>
+						</section>
+					</div>
+					<div class="1u">&nbsp;</div>
+					<div class="2u" id="sidebar1">
+						<section>
+							<div> <a href="#"><img src="images/img13.jpg" alt=""></a>
+								<h2>Sed Amet Phasellus</h2>
+								<p>Mauris et posuere vel metus auctor. In sodales et tincidunt id risus porta hendrerit. Nunc nec nibh velit, amet consectetur neque. Ut sed non eros imperdiet bibendum.</p>
+							</div>
+							<div>
+								<p><a href="#"><img src="images/img14.jpg" alt=""></a></p>
+								<h2>Sed Amet Phasellus</h2>
+								<p>Mauris et posuere vel metus auctor. In sodales et tincidunt id risus porta hendrerit. Nunc nec nibh velit, amet consectetur neque. Ut sed non eros imperdiet bibendum.</p>
+							</div>
+							<div>
+								<p><a href="#"><img src="images/img21.jpg" alt=""></a></p>
+								<h2>Sed Amet Phasellus</h2>
+								<p>Mauris et posuere vel metus auctor. In sodales et tincidunt id risus porta hendrerit. Nunc nec nibh velit, amet consectetur neque. Ut sed non eros imperdiet bibendum.</p>
+							</div>
+						</section>
+					</div>
+					<div class="2u">
+						<section id="sidebar2">
+							<div> <a href="#"><img src="images/img15.jpg" alt=""></a>
+								<h2>Sed Amet Phasellus</h2>
+								<p>Mauris et posuere vel metus auctor. In sodales et tincidunt id risus porta hendrerit. Nunc nec nibh velit, amet consectetur neque. Ut sed non eros imperdiet bibendum.</p>
+							</div>
+							<div>
+								<p><a href="#"><img src="images/img16.jpg" alt=""></a></p>
+								<h2>Sed Amet Phasellus</h2>
+								<p>Mauris et posuere vel metus auctor. In sodales et tincidunt id risus porta hendrerit. Nunc nec nibh velit, amet consectetur neque. Ut sed non eros imperdiet bibendum.</p>
+							</div>
+							<div>
+								<p><a href="#"><img src="images/img20.jpg" alt=""></a></p>
+								<h2>Sed Amet Phasellus</h2>
+								<p>Mauris et posuere vel metus auctor. In sodales et tincidunt id risus porta hendrerit. Nunc nec nibh velit, amet consectetur neque. Ut sed non eros imperdiet bibendum.</p>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div-->
+</div>
+<div id="copyright" style="background-color:white;">
+	<p style="color:black">&copy; BloodConnect <!--| Images: <a href="http://fotogrph.com/">Fotogrph</a> |--> Design: <a style="color:#3C7BCF;text-decoration:none;" href="http://html5templates.com/">Vivek Jain Ashish Kumar Jaspreet Singh</a></p>
+</div>
+</body>
+</html>

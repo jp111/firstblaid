@@ -1,0 +1,294 @@
+<html>
+<head>
+<link href="/css/bootstrap12.css" rel="stylesheet">
+
+	<link rel="shortcut icon" href="http://www.clipartsfree.net/vector/small/blood_clipart_Clipart_Free.png">
+
+    <title>BloodConnect</title>
+<script>
+
+      var CLIENT_ID = '269741158057.apps.googleusercontent.com';
+      var SCOPES = 'https://www.googleapis.com/auth/drive';
+      var folderID="";
+      /**
+       * Called when the client library is loaded to start the auth flow.
+       */
+      function handleClientLoad() {
+        window.setTimeout(checkAuth, 1);
+      }
+
+      /**
+       * Check if the current user has authorized the application.
+       */
+      
+      function checkAuth() {
+        gapi.auth.authorize(
+            {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': true},
+            handleAuthResult);
+      }callback
+
+      /**
+       * Called when authorization server replies.
+       *
+       * @param {Object} authResult Authorization result.
+       */
+
+
+	
+
+      function handleAuthResult(authResult) {
+        var authButton = document.getElementById('authorizeButton');
+       // var filePicker = document.getElementById('filePicker');
+        authButton.style.display = 'none';
+       // filePicker.style.display = 'none';
+        if (authResult && !authResult.error) {
+          // Access token has been successfully retrieved, requests can be sent to the API.
+         // filePicker.style.display = 'block';
+	  document.getElementById("upload_to_drive").onclick = uploadFile;
+	  document.getElementById("upload_folder").onclick = uploadFolder;
+          //filePicker.onchange = uploadFile;
+        } else {
+          // No access token could be retrieved, show the button to start the authorization flow.
+          authButton.style.display = 'block';
+	  authButton.onclick = function() {
+              gapi.auth.authorize(
+                  {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': false},
+                  handleAuthResult);
+          };
+        }
+      }
+
+      /**
+       * Start the file upload.
+       *
+       * @param {Object} evt Arguments from the file selector.
+       */
+
+      function uploadFile() {
+        gapi.client.load('drive', 'v2', function() {
+			console.log("file insert");
+			var blob = new Blob(["Hello world!"], { type: "text/plain" });
+			//blob.setName("PRESY");			
+		//	insertFile(blob).done(getFolderID);
+			
+			insertFile(blob);
+			
+			setTimeout(function() {
+				alert("FileUploaded! Please click home button to go back.");
+			},5);
+        });
+      }
+
+
+function getFolderID() {
+ 	// Get Folder ID
+	var flag=-1;
+			
+		var request = gapi.client.drive.files.list();	
+	  		console.log("YO");      	  
+	  request.execute(function(resp) { 
+			        	
+         	 for (i=0; i<resp.items.length; i++) {
+             	    var title = resp.items[i].title;
+			var id = resp.items[i].id;			
+			
+           	    
+	            foldercheck=title;
+       //     var fileInfo = document.createElement('li');
+      //      fileInfo.appendChild(document.createTextNode( 'TITLE: ' + title  + 'ID:' + id ));                
+    //        document.getElementById('content').appendChild(fileInfo);
+if (title=="HealthMate Prescriptions")
+			{
+		
+				folderID=id;
+				flag=1;		
+				break;
+			
+			}			
+        }
+		
+		
+    }); 
+
+};
+
+ function uploadFolder() {
+        gapi.client.load('drive', 'v2', function() {
+			console.log("folder insert");
+	//		var blob = new Blob(["Hello world!"], { type: "text/plain" });
+			//blob.setName("PRESY");			
+			createFolder(blob);
+	  	alert("Folder Created! Now All Prescriptions will be uploaded to this Folder.");
+
+        });
+      }
+      /**
+       * Insert new file.
+       *
+       * @param {File} fileData File object to read data from.
+       * @param {Function} callback Function to call when the request is complete.
+       */
+
+      function insertFile(fileData, callback) {
+	
+	const boundary = '-------314159265358979323846';
+        const delimiter = "\r\n--" + boundary + "\r\n";
+        const close_delim = "\r\n--" + boundary + "--";
+	var presName="camper";
+        var reader = new FileReader();
+        reader.readAsBinaryString(fileData);
+        reader.onload = setTimeout(function(e) {
+          var contentType = "text/html";
+//		setTimeout(function(){alert("Hello")},10000);          
+	var metadata = {
+            'title': "All Donors" ,
+            'mimeType': contentType,
+	
+
+          };
+
+          var base64Data = btoa(reader.result);
+          var multipartRequestBody =
+              delimiter +
+              'Content-Type: application/json\r\n\r\n' +
+              JSON.stringify(metadata) +
+              delimiter +
+              'Content-Type: ' + contentType + '\r\n' +
+                    '\r\n' +
+              "{{out}}" +
+              close_delim;
+
+          request = gapi.client.request({
+              'path': '/upload/drive/v2/files',
+              'method': 'POST',
+              'params': {'uploadType': 'multipart'},
+	      
+              'headers': {
+                'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
+              },
+              'body': multipartRequestBody});
+          if (!callback) {
+            callback = function(file) {
+              console.log(file)
+            };
+          }
+          request.execute(callback);
+        },1);
+      }
+/* CREATING FOLDER IN DRIVE NAMED "HeathMate Prescriptions"*/ 
+function createFolder(fileData, callback) {
+	
+	const boundary = '-------314159265358979323846';
+        const delimiter = "\r\n--" + boundary + "\r\n";
+        const close_delim = "\r\n--" + boundary + "--";
+        var reader = new FileReader();
+        reader.readAsBinaryString(fileData);
+        reader.onload = function(e) {
+        var contentType = "application/vnd.google-apps.folder";
+        var metadata = {
+            'title': "BloodConnect" ,
+            'mimeType': contentType
+        };
+
+        var multipartRequestBody =
+              delimiter +
+              'Content-Type: application/json\r\n\r\n' +
+              JSON.stringify(metadata) +
+              delimiter +
+              'Content-Type: ' + contentType + '\r\n' +
+              '\r\n' +
+              close_delim;
+
+          request = gapi.client.request({
+              'path': '/upload/drive/v2/files',
+              'method': 'POST',
+              'params': {'uploadType': 'multipart'},
+              'headers': {
+                'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
+              },
+		'body': multipartRequestBody});
+        if (!callback) {
+            callback = function(file) {
+              console.log(file)
+            };
+    }
+          request.execute(callback);
+        }
+		
+      } 
+    
+</script>
+<script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+
+
+    <!-- Custom styles for this template -->
+    <link href="/css/carousel.css" rel="stylesheet">
+  <style type="text/css" id="holderjs-style"></style></head>
+</head>
+<script src="/js/jquery-1.js"></script>
+    <script src="/js/bootstrap12.js"></script>
+    <script src="/js/holder.js"></script>
+<body>
+
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/index">BloodConnect</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/index">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+		<li><a href="/organise">Blood Camp?</a></li>
+		</ul><ul class="nav pull-right"><li><a href="{{logout}}">Logout</a></li></ul>
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+<br/>
+<br/>
+<br/>
+
+<div class="container">
+<h1>Get All The Donor Details Saved To Your Drive</h1>
+<table>
+<tr>
+<td>
+<input type="button" id="authorizeButton" style="display: none" value="Authorize" class="btn btn-danger" /> </td><td>Our app to access your google-drive</td>
+</tr>
+<br/>
+</table>
+<br/>
+<input type="button" id="upload_to_drive" value="Save Donor Details To My Drive" class="btn btn-primary"/>
+<h1>Donors Attending Your Blood Camp<h1>
+<table  style="border:1px solid green;width:100%;" >
+<tr class="info"> 
+	<th>Donor Name </th>
+	<th> Blood Group </th>
+	<th> Age </th>
+	<th> Address </th>
+</tr>
+<tr class="info">
+{% for i in donor %}
+	<td>{{i.guser.Dname}} </td>
+	<td>{{i.guser.Bgroup }}</td>
+	<td>{{i.guser.age}}</td>
+	<td>{{i.guser.address}}</td>
+{% endfor %}
+</tr>
+</table>
+</body>
+</html>

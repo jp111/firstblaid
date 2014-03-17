@@ -1,0 +1,496 @@
+body{
+    font-family: 'Titillium Web', sans-serif;
+  background: url(/static/img/paper_fibers.png) repeat;
+}
+
+.nav-brand-div{
+    font-family: 'Junge', serif;
+}
+
+.navbar-wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    opacity: 0.85;
+    margin-bottom: -90px;
+}
+
+.black {
+    color : #000;
+}
+.white {
+    color : #fff;
+}
+.centered {
+    text-align : center;
+}   
+/* Tweak navbar brand link to be super sleek
+-------------------------------------------------- */
+
+body > .navbar {
+  font-size: 13px;
+}
+
+/* Change the docs' brand */
+a.brand {
+  padding-right: 0;
+  padding-left: 0;
+  margin-left: 60px;
+  float: right;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 0 1px 0 rgba(0,0,0,.1), 0 0 30px rgba(0,0,0,.125);
+  -webkit-transition: all .2s linear;
+     -moz-transition: all .2s linear;
+          transition: all .2s linear;
+}
+a.brand:hover {
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(0,0,0,.5), 0 0 30px rgba(0,0,0,.8);
+  color: black;
+}
+
+
+.jumbotron {
+  position: relative;
+  padding: 40px 0;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+  /*background: #3f363f; /* Old browsers *
+  background: -moz-linear-gradient(45deg,  #3f363f 0%, #f2f1f1 100%); /* FF3.6+ *
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#020031), color-stop(100%,#6d3353)); /* Chrome,Safari4+ *
+  background: -webkit-linear-gradient(45deg,  #f2f1f1 0%,#f2f1f1 100%); /* Chrome10+,Safari5.1+ *
+  background: -o-linear-gradient(45deg,  #3f363f 0%,#f2f1f1 100%); /* Opera 11.10+ *
+  background: -ms-linear-gradient(45deg,  #3f363f 0%,#f2f1f1 100%); /* IE10+ *
+  background: linear-gradient(45deg,  #3f363f 0%,#f2f1f1 100%); /* W3C **/
+  /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f363f', endColorstr='#f2f1f1',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */*/
+  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+          box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+}
+.jumbotron h1 {
+  font-size: 80px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.jumbotron p {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 30px;
+}
+
+/* Link styles (used on .masthead-links as well) */
+.jumbotron a {
+  color: #fff;
+  color: rgba(255,255,255,.5);
+  -webkit-transition: all .2s ease-in-out;
+     -moz-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+}
+.jumbotron a:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255,255,255,.25);
+}
+
+/* Download button */
+.masthead .btn {
+  padding: 19px 24px;
+  font-size: 24px;
+  font-weight: 200;
+  color: #fff; /* redeclare to override the `.jumbotron a` */
+  border: 0;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+  -webkit-transition: none;
+     -moz-transition: none;
+          transition: none;
+}
+.masthead .btn:hover {
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+}
+.masthead .btn:active {
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
+     -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
+          box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
+}
+
+
+/* Pattern overlay
+------------------------- */
+.jumbotron .tagline{
+  font-family: 'Junge', serif;
+}
+.jumbotron .container {
+  position: relative;
+  z-index: 2;
+}
+.jumbotron .header-image{
+    position: relative;
+    z-index: 2;
+  margin: 80px 0px 30px 0px;
+}
+.jumbotron:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url('/static/img/graph2.png') repeat center center;
+  opacity: 0.6;
+}
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1) {
+
+  .jumbotron:after {
+    background-size: 150px 150px;
+  }
+
+}
+
+/* Masthead (docs home)
+------------------------- */
+.masthead {
+  padding: 70px 0 70px;
+  margin-bottom: 0;
+  color: #323232;
+}
+.masthead h1 {
+  font-size: 120px;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+.masthead p {
+  font-size: 40px;
+  font-weight: 200;
+  line-height: 1.25;
+}
+
+/* Textual links in masthead */
+.masthead-links {
+  margin: 0;
+  list-style: none;
+}
+.masthead-links li {
+  display: inline;
+  padding: 0 10px;
+  color: rgba(255,255,255,.25);
+}
+
+.welcome{
+    background: url('/static/img/paper_fibers.png') repeat center center;
+}
+
+.shadowed-box{
+    -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+  -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+  box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+  /*height: inherit;*/
+}
+
+.connect-section {
+  /*padding: 50px 0;*/
+  background: url('/static/img/stressed_linen.jpg') repeat center center;
+  margin-top: -40px;
+}
+
+#connect1{
+  background: url('/static/img/connect1.png') center center;
+  min-height: 570px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+#connect2{
+  background: url('/static/img/connect2.png') center center;
+  min-height: 570px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  -webkit-transition: all 2s ease-in-out;
+   -moz-transition: all 2s ease-in-out;
+        transition: all 2s ease-in-out;
+}
+
+#login{
+  /*margin-top: 60px;*/
+  padding-top: 40px;
+}
+
+#test-the-app{
+  background: url('/static/img/nexus4.png');
+  background-size: contain;
+  min-height: 450px;
+  max-width: 270px;
+}
+
+.test-app-text{
+  /*padding-top: 40px;*/
+}
+
+#test-app-input{
+  width: 140px;
+}
+
+.test-app-form{
+  padding-top: 70px;
+  padding-left: 50px;
+}
+
+.signup{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.login-row{
+  padding-top: 30px;
+}
+
+.carousel{
+  margin-bottom: 0px;
+  margin-top: 20px;
+}
+
+.carousel-inner{
+  height: 450px;
+  overflow: hidden;
+}
+
+.hero-section {  
+  background: url(/static/img/egg_shell.jpg) repeat;
+}
+
+.hero-overlay{
+  background-image: url(/static/img/bigdrop.png);
+  background-repeat: no-repeat;
+  background-size: 30%; 
+  background-position: 100% -10%;
+}
+
+.non-home-content{
+  margin-top: 40px;
+}
+
+.social-icon{
+  padding-left: 10px;
+}
+
+.table td{
+  border-top: none;
+}
+
+.table {
+  margin-bottom: 0px;
+}
+
+.no-background {
+  background: none;
+}
+
+.location-button {
+  max-width: 30px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  /*background: url(/static/img/location-img.png) center center no-repeat;*/
+  /*background-size: 30px;*/
+}
+
+.location-button:hover {
+  cursor: pointer;
+}
+
+.center {
+  text-align: center;
+}
+
+#footer {
+  background: white;
+  -webkit-box-shadow:  0 3px 7px rgba(0,0,0,.2),  0 -3px 7px rgba(0,0,0,.2);
+     -moz-box-shadow:  0 3px 7px rgba(0,0,0,.2),  0 -3px 7px rgba(0,0,0,.2);
+          box-shadow:  0 3px 7px rgba(0,0,0,.2),  0 -3px 7px rgba(0,0,0,.2);
+}
+
+.body-content{
+  /*padding-bottom: 50px;*/
+}
+
+.fb-share{
+  cursor: pointer;
+  width: 78px;
+  margin: 5px;
+}
+
+.helptext{
+  color: gray;
+  font-size: 85%;
+  /*font-style: italic;*/
+}
+
+#map{
+  min-height: 350px;
+  height: 100%;
+  width: 100%;
+  /*border: 1px solid #333;*/
+}
+
+#map img{
+  max-width: none;
+}
+
+.top-space{
+  margin-top: 40px;
+}
+
+.top-space-small{
+  margin-top: 10px;
+}
+
+.closed-request{
+  background: rgba(208, 243, 206, 0.75);
+}
+
+.icon-btn{
+  margin-top: 3px;
+}
+
+.img-people{
+  margin: 5px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#regular-signup{
+  display: none;
+  background: url('/static/img/grey_wash_wall.png') repeat center center;
+  padding: 40px;
+  color: white;
+  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+  -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+  box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+}
+
+.text-center{
+  text-align: center;
+}
+
+.how-to-donate-section {
+  padding: 95px 0 40px 0px;
+  /*margin-top: 20px;*/
+  background-color: #8da581;
+  color: #ffffff;
+}
+
+.how-to-donate-section small {
+  color: #1c1615;
+}
+
+.get-donor-section {
+  padding: 95px 0px 0px 0px;
+  background-color: #e7dfd4;
+}
+
+.get-donor-section h1{
+  color: #3f4036;
+  margin-bottom: 10px;
+}
+.why-us {
+  padding-top: 70px;
+  padding-bottom: 60px;
+  color: #ffffff;
+  background-color: #14100f;
+  text-align: center;
+}
+
+.why-us .centerpart {
+  background-color: #191413;
+  margin: auto auto;
+}
+
+.why-us .sides {
+  background-color: #1d1716;
+  margin: auto auto;
+}
+
+.why-us p {
+  padding: 20px;
+
+}
+
+.why-us div{
+  padding-top: 20px;
+}
+
+.why-us input{
+  margin: 0 20px 0 0;
+}
+
+#sort_by{
+  width: 100%;
+}
+
+.list{
+  margin: none;
+  list-style-type: none;
+}
+
+.sort-buttons{
+  margin-bottom: 20px;
+}
+
+/*#id_phone_number{
+  width: 70%;
+}*/
+
+.thank-you-note{
+  margin-top: 50px;
+}
+
+.thank-you-note p{
+  font-size: 18px;
+}
+
+#hospital-table{
+  margin-top:10px;
+}
+
+.bloodbag {
+    background : url(../img/bloodbag_small.png) no-repeat center center;
+}
+
+.establishment_logo {
+    display : none;
+}
+@media (min-width: 699px) {
+    .establishment_logo {
+        display : block;
+        position : absolute;
+        margin-top : 10px;
+        height : 50px;
+        right : 10px;
+    }
+}
+@media (min-width: 1200px) {
+    .establishment_logo {
+        display : block;
+        position : absolute;
+        margin-top : 10px;
+        height : 80px;
+        right : 10px;
+    }
+}
+

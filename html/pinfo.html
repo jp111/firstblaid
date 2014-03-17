@@ -1,0 +1,737 @@
+<!DOCTYPE HTML>
+<!--
+	Altitude: A responsive HTML5 website template by HTML5Templates.com
+	Released for free under the Creative Commons Attribution 3.0 license (html5templates.com/license)
+	Visit http://html5templates.com for more great templates or follow us on Twitter @HTML5T
+-->
+<html>
+<head>
+<title>BloodConnect</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Responsive Retina-Friendly Menu</title>
+		<meta name="description" content="Responsive Retina-Friendly Menu with different, size-dependent layouts" />
+		<meta name="keywords" content="responsive menu, retina-ready, icon font, media queries, css3, transition, mobile" />
+		<meta name="author" content="Codrops" />
+<link rel="shortcut icon" href="http://www.clipartsfree.net/vector/small/blood_clipart_Clipart_Free.png" />
+
+<link rel="stylesheet" type="text/css" href="css/default1.css" />
+<link rel="stylesheet" type="text/css" href="css/component.css" />		
+<link href='http://fonts.googleapis.com/css?family=Marvel:700italic,400' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/5grid/core.css" />
+<link rel="stylesheet" href="css/5grid/core-desktop.css" />
+<link rel="stylesheet" href="css/5grid/core-1200px.css" />
+<link rel="stylesheet" href="css/5grid/core-noscript.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/style-desktop.css" />
+<link  rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
+
+
+<script src="css/5grid/jquery.js"></script>
+<script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none&amp;mobileUI.openerWidth=52"></script>
+<script src="js/modernizr.custom.js"></script>
+<!--link  rel="stylesheet" href="/css/bootstrap.css" type="text/css" /-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<!--script src="/js/jquery.js" type="text/javascript"></script-->
+<script src="/js/bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/validator.js"></script>
+<script type="text/javascript" src="/js/jqBootstrapValidation.js"></script>
+
+</head><body class="twocolumn2">
+<style>
+         <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background-color: red;
+      }
+      #map-canvas {
+        position: absolute;
+        right: 0;
+        text-align: left;
+        width: 50%;
+        height: 80%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+    </style>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?&sensor=false"></script>
+<script type="text/javascript">
+        var map;
+	var marker;
+        var markersArray = [];
+	var geocoder;
+	var times=0;
+        function initMap()
+        {
+	    geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(41, 29);
+            var myOptions = {
+                zoom: 8,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+	var address = document.getElementById("address").value;
+geocoder.geocode( { 'address': address}, function(results, status) {
+	    if (status == google.maps.GeocoderStatus.OK) {
+	      map.setCenter(results[0].geometry.location);
+	      placeMarker(results[0].geometry.location);
+              document.getElementById("latFld").value = results[0].geometry.location.lat();
+              document.getElementById("lngFld").value = results[0].geometry.location.lng();
+	      //var marker = new google.maps.Marker({
+	        //  map: map,
+	          //position: results[0].geometry.location
+	      //});
+	    } 
+	    else {
+	      alert('Geocode was not successful for the following reason: ' + status + ' Please search again with a more prominent location or you can manually set the marker on the location to set the marker');
+	    }
+	  });
+
+            // add a click event handler to the map object
+            google.maps.event.addListener(map, "rightclick", function(event)
+            {
+                // place a marker
+                placeMarker(event.latLng);
+
+                // display the lat/lng in your form's lat/lng fields
+                document.getElementById("latFld").value = event.latLng.lat();
+                document.getElementById("lngFld").value = event.latLng.lng();
+		
+            });
+	    codeAddress();
+        }
+	function codeAddress() {
+	  address = document.getElementById("address");
+geocoder.geocode( { 'address': address}, function(results, status) {
+	    if (status == google.maps.GeocoderStatus.OK) {
+	      map.setCenter(results[0].geometry.location);
+	      placeMarker(results[0].geometry.location);
+              document.getElementById("latFld").value = results[0].geometry.location.lat();
+              document.getElementById("lngFld").value = results[0].geometry.location.lng();
+	      //var marker = new google.maps.Marker({
+	        //  map: map,
+	          //position: results[0].geometry.location
+	      //});
+	    } 
+	    else {
+	      alert('Geocode was not successful for the following reason: ' + status + ' Please search again with a more prominent location or you can manually set the marker on the location to set the marker');
+	    }
+	  });
+	}
+	function codeAdd() {
+	  address = document.getElementById("address");
+           
+	  
+		geocoder.geocode( { 'address': address}, function(results, status) {
+	    if (status == google.maps.GeocoderStatus.OK) {
+	      map.setCenter(results[0].geometry.location);
+	      placeMarker(results[0].geometry.location);
+              document.getElementById("latFld").value = results[0].geometry.location.lat();
+              document.getElementById("lngFld").value = results[0].geometry.location.lng();
+	      //var marker = new google.maps.Marker({
+	        //  map: map,
+	          //position: results[0].geometry.location
+	      //});
+	    } 
+	    else {
+	      alert('Geocode was not successful for the following reason: ' + status + ' Please search again with a more prominent location or you can manually set the marker on the location to set the marker');
+	    }
+	  });
+	}
+
+
+        function placeMarker(location) {
+            // first remove all markers if there are any
+            deleteOverlays();
+
+             marker = new google.maps.Marker({
+                position: location, 
+                map: map,
+		draggable: true
+            });
+	updateMarkerPosition(location);
+geocodePosition(location);
+  
+  // Add dragging event listeners.
+  google.maps.event.addListener(marker, 'dragstart', function() {
+    updateMarkerAddress('Dragging...');
+  });
+  
+  google.maps.event.addListener(marker, 'drag', function() {
+    updateMarkerStatus('Dragging...');
+    updateMarkerPosition(marker.getPosition());
+  });
+  
+  google.maps.event.addListener(marker, 'dragend', function() {
+    updateMarkerStatus('Drag ended');
+    geocodePosition(marker.getPosition());
+  });
+
+
+
+            // add marker in markers array
+            markersArray.push(marker);
+
+            //map.setCenter(location);
+        }
+
+        // Deletes all markers in the array by removing references to them
+        function deleteOverlays() {
+            if (markersArray) {
+                for (i in markersArray) {
+                    markersArray[i].setMap(null);
+                }
+            markersArray.length = 0;
+            }
+        }
+function geocodePosition(pos) {
+geocoder.geocode({'latLng': pos}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      if (results[1]) {
+        map.setZoom(15);
+
+  	document.getElementById('address').value = results[0].formatted_address;
+	updateMarkerAddress(results[0].formatted_address);
+	infowindow.setContent(results[0].formatted_address);
+        infowindow.open(map, marker);
+      } else {
+        alert('No results found');
+      }
+    } else {
+      alert('Geocoder failed due to: ' + status);
+    }
+  });
+
+}
+
+function updateMarkerStatus(str) {
+  document.getElementById('markerStatus').innerHTML = str;
+}
+
+function updateMarkerPosition(latLng) {
+document.getElementById('info').innerHTML = [
+    latLng.lat(),
+    latLng.lng()
+  ].join(', ');
+
+ document.getElementById("latFld").value = latLng.lat();
+  document.getElementById("lngFld").value = latLng.lng();
+
+}
+function updateMarkerAddress(str) {
+}
+    </script>
+
+
+
+
+
+
+
+	<script>
+var map;
+var geocoder;
+var marker;
+geocoder = new google.maps.Geocoder();
+var infowindow = new google.maps.InfoWindow();
+
+function initialize() {
+  var mapOptions = {
+    zoom: 8,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+var lng;
+var lat;
+  // Try HTML5 geolocation
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                      position.coords.longitude);
+	lat=position.coords.latitude;
+	lng=position.coords.longitude;
+map.setCenter(pos);
+  document.getElementById("latFld").value = lat;
+  document.getElementById("lngFld").value = lng;
+ marker = new google.maps.Marker({
+    position: pos,
+    map: map,
+    draggable: true
+  });
+
+
+updateMarkerPosition(pos);
+geocodePosition(pos);
+  
+  // Add dragging event listeners.
+  google.maps.event.addListener(marker, 'dragstart', function() {
+    updateMarkerAddress('Dragging...');
+  });
+  
+  google.maps.event.addListener(marker, 'drag', function() {
+    updateMarkerStatus('Dragging...');
+    updateMarkerPosition(marker.getPosition());
+  });
+  
+  google.maps.event.addListener(marker, 'dragend', function() {
+    updateMarkerStatus('Drag ended');
+    geocodePosition(marker.getPosition());
+  });
+
+
+
+
+    }, function() {
+      handleNoGeolocation(true);
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleNoGeolocation(false);
+  }
+}
+function geocodePosition(pos) {
+geocoder.geocode({'latLng': pos}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      if (results[1]) {
+        map.setZoom(15);
+
+  	document.getElementById('address').value = results[0].formatted_address;
+	updateMarkerAddress(results[0].formatted_address);
+	infowindow.setContent(results[0].formatted_address);
+        infowindow.open(map, marker);
+      } else {
+        alert('No results found');
+      }
+    } else {
+      alert('Geocoder failed due to: ' + status);
+    }
+  });
+
+}
+
+function updateMarkerStatus(str) {
+  document.getElementById('markerStatus').innerHTML = str;
+}
+
+function updateMarkerPosition(latLng) {
+document.getElementById('info').innerHTML = [
+    latLng.lat(),
+    latLng.lng()
+  ].join(', ');
+
+ document.getElementById("latFld").value = latLng.lat();
+  document.getElementById("lngFld").value = latLng.lng();
+
+}
+function updateMarkerAddress(str) {
+}
+function handleNoGeolocation(errorFlag) {
+  if (errorFlag) {
+    var content = 'Error: The Geolocation service failed.';
+  } else {
+    var content = 'Error: Your browser doesn\'t support geolocation.';
+  }
+
+  var options = {
+    map: map,
+    position: new google.maps.LatLng(60, 105),
+    content: content
+  };
+
+  var infowindow = new google.maps.InfoWindow(options);
+  map.setCenter(options.position);
+}
+
+
+    </script>
+
+
+
+<body style="background-color:#99B3CC;" onload="initialize();">
+<div class="container" style="background-color:#FF4A4A;width:auto;">
+<center>	
+			<div class="main clearfix" style="min-height:20em;">
+				<nav id="menu1" class="nav">					
+					<ul>
+						<li class="active">
+							<a href="/index" >
+								<span class="icon">
+									<i aria-hidden="true" style="width:auto;height:auto;line-height:1;" class="icon-home"></i>
+								</span>
+								<span style="color:white;">Home</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="icon"> 
+									<i aria-hidden="true" class="icon-services" style="width:auto;height:auto;line-height:1;"></i>
+								</span>
+								<span>Services</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="icon">
+									<i aria-hidden="true" class="icon-portfolio" style="width:auto;height:auto;line-height:1;"></i>
+								</span>
+								<span>Portfolio</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="icon">
+									<i aria-hidden="true" class="icon-blog" style="width:auto;height:auto;line-height:1;"></i>
+								</span>
+								<span>Blog</span>
+							</a>
+						</li>
+						<li>
+							<a href="/about">
+								<span class="icon">
+									<i aria-hidden="true" class="icon-team" style="width:auto;height:auto;line-height:1;"></i>
+								</span>
+								<span>The team</span>
+							</a>
+						</li>
+						<li>
+							<a href="/contact">
+								<span class="icon">
+									<i aria-hidden="true" class="icon-contact" style="width:auto;height:auto;"></i>
+								</span>
+								<span>Contact</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			</center>
+		</div>
+		<script>
+			//  The function to change the class
+			var changeClass = function (r,className1,className2) {
+				var regex = new RegExp("(?:^|\\s+)" + className1 + "(?:\\s+|$)");
+				if( regex.test(r.className) ) {
+					r.className = r.className.replace(regex,' '+className2+' ');
+			    }
+			    else{
+					r.className = r.className.replace(new RegExp("(?:^|\\s+)" + className2 + "(?:\\s+|$)"),' '+className1+' ');
+			    }
+			    return r.className;
+			};	
+
+			//  Creating our button in JS for smaller screens
+			var menuElements = document.getElementById('menu');
+			menuElements.insertAdjacentHTML('afterBegin','<button type="button" id="menutoggle" class="navtoogle" aria-hidden="true"><i aria-hidden="true" class="icon-menu"> </i> Menu</button>');
+
+			//  Toggle the class on click to show / hide the menu
+			document.getElementById('menutoggle').onclick = function() {
+				changeClass(this, 'navtoogle active', 'navtoogle');
+			}
+
+			// http://tympanus.net/codrops/2013/05/08/responsive-retina-ready-menu/comment-page-2/#comment-438918
+			document.onclick = function(e) {
+				var mobileButton = document.getElementById('menutoggle'),
+					buttonStyle =  mobileButton.currentStyle ? mobileButton.currentStyle.display : getComputedStyle(mobileButton, null).display;
+
+				if(buttonStyle === 'block' && e.target !== mobileButton && new RegExp(' ' + 'active' + ' ').test(' ' + mobileButton.className + ' ')) {
+					changeClass(mobileButton, 'navtoogle active', 'navtoogle');
+				}
+			}
+		</script>
+<div id="wrapper">
+	<div id="header-wrapper">
+		<header id="header">
+			<!--div class="5grid-layout">
+				<div id="menu">
+					<nav class="mobileUI-site-nav">
+						<ul>
+							<li><a href="index.html">Homepage</a></li>
+							<li><a href="threecolumn.html">Three Column</a></li>
+							<li><a href="twocolumn1.html">Two Column #1</a></li>
+							<li class="active"><a href="twocolumn2.html">Two Column #2</a></li>
+							<li><a href="onecolumn.html">One Column</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div-->
+			<div id="logo-wrapper">
+				<div class="5grid-layout" id="logo" >
+					<div class="row">
+						<div class="12u"> <!-- Logo -->
+							<div>
+								<h1><a href="/index" class="mobileUI-site-name" style="font-family:'Marvel', sans-serif;">BloodConnect</a><span class="tagline"></span></h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	</div>
+	<div id="page-wrapper">
+		<div class="divider"></div>
+			<div class="12u">
+				<div class="5grid-layout" id="page">
+					<div class="row">
+{% if flag==0 %}
+
+
+<div  id="map-canvas"></div>
+<br/>
+<form id="myForm" action="/pinfo" method="post" class="form-horizontal">
+<div class="control-group">
+
+    <label class="control-label">Name:</label>
+    <div class="controls">
+ 
+		  	<input id="name" class="target" type="text" name="name"  data-validation-regex-regex="^[a-zA-Z. ]+$" data-validation-regex-message="Conatain only alphabets and '.' " required/>
+
+<p class="help-block">Should conatain alphabets only</p>
+</div>
+</div>
+
+
+  <div class="control-group">
+
+ <label class="control-label"> Complete Address:</label>
+    <div class="controls">
+ 	<textarea id="address" class="target" rows="5" name="address"  height="100px"required></textarea><a onclick="initialize()"><img src="/images/location.png" width="20px" height="20px"/></a>
+
+<p class="help-block">Should not be empty</p>
+<script type="text/javascript">
+var timeout;
+$('#address').keypress(function() {
+    if(timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+    }
+
+    timeout = setTimeout(initMap, 3000)
+})
+
+</script>
+</div>
+</div>
+  <div class="control-group">
+
+    <label class="control-label">Age:</label>
+    <div class="controls">
+		<input id="age" name="age" class="target" type="text" title="Please enter your age." min="17"  max="42"  required>
+                                   
+<p class="help-block">Should be between 17 and 42</p>
+                           </div>
+</div> 
+   <div class="control-group">
+
+    <label class="control-label">Contact No:</label>
+    <div class="controls">
+				     <input type="text" name="phone" data-validation-regex-regex="^[2-9]{1}[0-9]{9}$" data-validation-regex-message="Should be 10 digit long and should not start with 0/1" required/>
+                                    
+<p class="help-block">Should contain only 10 digit no</p>
+                  </div>
+</div> 
+	<div class="control-group">
+
+    <label class="control-label">Blood Group:</label>
+    <div class="controls">
+				
+                                     
+						<select name="bgroup" required>
+			   			 <option value="A+">A+</option>
+			   			 <option value="B+" selected>B+</option>	 
+			   			 <option value="AB+">AB+</option>
+			   			 <option value="B-">B-</option>
+			   			 <option value="A-">A-</option>
+			   			 <option value="AB-">AB-</option>
+			   			 <option value="O+">O+</option>
+			   			 <option value="O-">O-</option>
+						<select> 
+                      </div>
+	</div> 
+                                <div class="control-group">
+			<div class="controls">
+		<input  class="btn btn-primary" type="submit" name="editprofile" value="Submit" />
+             </div>
+		</div>
+		<input  id="latFld" name="lat" style="visibility:hidden;"/><br/>
+                <input  id="lngFld" name="long" style="visibility:hidden;"/><br/>
+</form>
+
+<script>
+  $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+</script>
+</center>
+<style>
+  #mapCanvas {
+    width: 500px;
+    height: 400px;
+    float: left;
+  }
+  #infoPanel {
+    float: left;
+    margin-left: 10px;
+  }
+  #infoPanel div {
+    margin-bottom: 5px;
+  }
+  </style>
+  
+  <div id="mapCanvas"></div>
+  <div id="infoPanel" style="visibility:hidden">
+    <b>Marker status:</b>
+    <div id="markerStatus"><i>Click and drag the marker.</i></div>
+    <b>Current position:</b>
+    <div id="info"></div>
+    <b>Closest matching address:</b>
+    <div id="address"></div>
+  </div>
+
+             </div>
+</div>           
+
+{% else %}
+
+<div id="map-canvas" ></div>
+<br/>
+<form id="myForm" action="/pinfo" method="post" class="form-horizontal">
+<div class="control-group">
+
+    <label class="control-label">Name:</label>
+    <div class="controls">
+ 
+		  	<input id="name" class="target" type="text" name="name" data-validation-regex-regex="^[a-zA-Z. ]+$" data-validation-regex-message="Conatain only alphabets and '.' " value="{{result[0].dname}}" required/>
+<p class="help-block">Should conatain alphabets only</p>
+</div>
+</div>
+
+  <div class="control-group">
+
+ <label class="control-label"> Complete Address:</label>
+    <div class="controls">
+ 	<textarea id="address" class="target" rows="5"  name="address" value="{{result[0].address}}" required></textarea><a onclick="initialize()"><img src="/images/location.png" width="20px" height="20px"/></a>
+<p class="help-block">Should not be empty</p>
+<script type="text/javascript">
+var timeout;
+$('#address').keypress(function() {
+    if(timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+    }
+
+    timeout = setTimeout(initMap, 3000)
+})
+
+</script>
+
+</div>
+</div>
+  <div class="control-group">
+
+    <label class="control-label">Age:</label>
+    <div class="controls">
+		<input id="age" name="age" class="target" title="Please enter your age." min="17"  max="42" value="{{result[0].age}}" />
+                                   
+<p class="help-block">Should be between 17 and 42</p>
+                           </div>
+</div> 
+   <div class="control-group">
+
+    <label class="control-label">Contact No:</label>
+    <div class="controls">
+				     <input type="text" name="phone" data-validation-regex-regex="^[2-9]{1}[0-9]{9}$" data-validation-regex-message="Should be 10 digit long and should not start with 0/1" value="{{result[0].contact}}" required/>
+                                    
+<p class="help-block">Should contain only 10 digit no</p>
+                  </div>
+</div> 
+	<div class="control-group">
+
+    <label class="control-label">Blood Group:</label>
+    <div class="controls">
+				
+                                      <label for="bgroup">Blood Group:</label>
+						<select name="bgroup" required>
+			   			 <option value="A+">A+</option>
+			   			 <option value="B+" selected>B+</option>	 
+			   			 <option value="AB+">AB+</option>
+			   			 <option value="B-">B-</option>
+			   			 <option value="A-">A-</option>
+			   			 <option value="AB-">AB-</option>
+			   			 <option value="O+">O+</option>
+			   			 <option value="O-">O-</option>
+						<select> 
+                      </div>
+	</div> 
+	<div class="control-group">
+			<div class="controls">
+		<input  class="btn btn-primary" type="submit" name="editprofile" value="Submit" />
+             </div>
+		</div>
+		<input  id="latFld" name="lat" style="visibility:hidden;"/><br/>
+                <input  id="lngFld" name="long" style="visibility:hidden;"/><br/>
+</form>
+
+
+<script type="text/javascript">
+function setSelectValue(name,val)
+{
+	document.getElementsByName(name)[0].value = val;
+}
+setSelectValue('bgroup','{{result[0].bgroup}}');
+</script>
+
+</div>           
+</center>
+<style>
+  #mapCanvas {
+    width: 500px;
+    height: 400px;
+    float: left;
+  }
+  #infoPanel {
+    float: left;
+    margin-left: 10px;
+  }
+  #infoPanel div {
+    margin-bottom: 5px;
+  }
+  </style>
+  
+  <div id="mapCanvas"></div>
+  <div id="infoPanel" style="visibility:hidden">
+    <b>Marker status:</b>
+    <div id="markerStatus"><i>Click and drag the marker.</i></div>
+    <b>Current position:</b>
+    <div id="info"></div>
+    <b>Closest matching address:</b>
+    <div id="address"></div>
+	</div>
+
+
+
+
+{% endif %}
+
+
+<script type="text/javascript">
+  $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="copyright">
+	<p>&copy; Your Site Name | Images: <a href="http://fotogrph.com/">Fotogrph</a> | Design: <a href="http://html5templates.com/">HTML5Templates.com</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<html>
+<head>
+<link  rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
+<script src="/js/jquery.js" type="text/javascript"></script>
+<script src="/js/bootstrap.js" type="text/javascript"></script>
+<link href="/css/styles.css" rel="stylesheet" media="screen">
+<link href="/css/zocial.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<h2>HELLO {{user.nickname()}}</h2>
+<p> Every two seconds, a patient in the World is in need of blood. In fact, about one of every seven people entering a hospital requires a blood transfusion. These startling statistics underscore the crucial nature of blood donation. Yet, only about 3% of the population currently gives blood. The number one reason these donors say they give is because they “want to help others.”
+</p>
+
+<h3>We have following requests</h3>
+{% for i in r %}
+<ul class="list">
+	<li class="well">
+	<table class="table">
+	<tr>
+	<th class="blood_type">{{i.bgroup}}</th><th class="number_of_units">{{i.bunit}} units</th>
+	<td class="text-center" style="width:25%" rowspan="4">
+		<p class="text-center">
+
+<a href="#myModal" role="button"  data-toggle="modal" class="btn btn-success close-request text-center "><i class="icon-heart icon-white"></i> Donate</a>
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="myModalLabel">CheckLists</h3>
+	</div>
+	<div class="modal-body">
+	<div class="confirm-question-wrapper">
+		<a href="">Donate Blood</a></br>
+	</div>
+	<div class="confirm-question-wrapper">
+		<a href="">Recieve Blood</a></br>
+	</div>
+	</div>
+	<div class="modal-footer">
+	 		<button class="btn btn-success confirm-button"><i class="icon-ok icon-white"></i> Nah</button>
+	                 <button class="btn cancel-donate" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Oops!</button>
+	</div>
+</div>
+
+
+
+
+
+
+		<!--a class="btn btn-success close-request text-center "  href="view_request/{{i.ruser.email()}}"><i class="icon-heart icon-white"></i> Donate</a></p-->
+	<p class="text-center"><strong>Spread the word!</strong></p>
+		<span class="z-clip-wrap" style='position: relative; display: inline-block;'></span>
+		<p class="text-center">
+		<a class="btn btn-primary close-request text-center "  href="https://plus.google.com/share?url=firstblaid2.appspot.com/view_request/{{i.ruser.email()}}"><i class="icon-heart icon-white"></i> Share</a></p>
+	</p>
+	</td>
+	</tr>
+	<tr><th>From</th><td colspan="2" class="location">{{i.address}}</td>
+	</tr>
+	<tr><th>Placed on</th><td class="placed_at">{{i.bdate}}</td></tr>
+<tr><th>By</th><td class="placed_at">{{i.rname}}</td></tr>
+	</table>
+	</li>
+</ul>
+</br></br></br>
+{% endfor %}
+</body>
+</html>
